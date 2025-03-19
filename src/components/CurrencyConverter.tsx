@@ -29,7 +29,6 @@ const CurrencyConverter = () => {
   const currencyQuery = useQuery({
     queryKey: ["currencies"],
     queryFn: fetchCurrencies,
-    enabled: false,
   });
 
   const conversionQuery = useQuery({
@@ -39,7 +38,6 @@ const CurrencyConverter = () => {
   });
 
   useEffect(() => {
-    currencyQuery.refetch();
     if (currencyQuery.data) {
       dispatch(setCurrencies(currencyQuery.data));
     }

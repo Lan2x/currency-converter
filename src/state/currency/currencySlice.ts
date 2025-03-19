@@ -21,7 +21,6 @@ const currencySlice = createSlice({
     setCurrencies: (state, payload: PayloadAction<Record<string, string>>) => {
       state.currencies = payload.payload;
     },
-
     setFromCurrency: (state, payload: PayloadAction<string>) => {
       state.fromCurrency = payload.payload;
     },
