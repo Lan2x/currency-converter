@@ -21,26 +21,22 @@ import {
 import { useEffect } from "react";
 
 const CurrencyConverter = () => {
-  const { amount, currencies, toCurrency, fromCurrency, error } = useSelector(
+  const { amount, currencies, toCurrency, fromCurrency } = useSelector(
     (state: RootState) => state.currency
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  //start fetch currencies
   const currencyQuery = useQuery({
     queryKey: ["currencies"],
     queryFn: fetchCurrencies,
     enabled: false,
   });
-  //end fetch currencies
 
-  //start conversion query
   const conversionQuery = useQuery({
     queryKey: ["conversion", fromCurrency, toCurrency, amount],
     queryFn: () => fetchConversionRate(fromCurrency, toCurrency),
     enabled: false,
   });
-  //end conversion query
 
   useEffect(() => {
     currencyQuery.refetch();
@@ -91,15 +87,16 @@ const CurrencyConverter = () => {
         <input
           value={amount}
           onChange={(e) => dispatch(setAmount(parseInt(e.target.value)))}
-          type="number"
+          type="text"
           className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-1"
         />
       </div>
 
-      <div className="flex justify-end mt-6">
+      <div className="flex justify-center w-full mt-6">
         <button
           onClick={async () => conversionQuery.refetch()}
-          className={`px-5 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
+          disabled={conversionQuery.isLoading}
+          className={`px-5 w-full py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2
           ${conversionQuery.isLoading ? "animate-pulse" : ""}
             `}
         >
@@ -108,14 +105,14 @@ const CurrencyConverter = () => {
         <ToastContainer />
       </div>
 
-      <div className="mt-4 text-lg font-medium text-right text-red-600">
-        {error && error}
+      <div className="mt-4 text-lg font-medium text-center text-red-600 bg-red-500/20 rounded-md">
+        {conversionQuery.error?.message && conversionQuery.error.message}
       </div>
 
-      <div className="mt-4 text-lg font-medium text-right text-green-600">
+      <div className="mt-4 text-lg font-medium text-center text-green-900 bg-green-500/20 rounded-md">
         {conversionQuery.isLoading && "Loading"}
         {conversionQuery.data &&
-          `Converted Amount ${parseFloat(
+          `${amount} ${fromCurrency} =  ${toCurrency} ${parseFloat(
             ((conversionQuery.data as number) * amount).toFixed(2)
           ).toLocaleString()}`}
       </div>

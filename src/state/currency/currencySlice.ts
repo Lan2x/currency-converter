@@ -5,8 +5,6 @@ interface CurrencyState {
   fromCurrency: string;
   toCurrency: string;
   amount: number;
-  loading: boolean;
-  error: string | null;
 }
 
 const initialState: CurrencyState = {
@@ -14,8 +12,6 @@ const initialState: CurrencyState = {
   fromCurrency: "USD",
   toCurrency: "PHP",
   amount: 0,
-  loading: false,
-  error: null,
 };
 
 const currencySlice = createSlice({

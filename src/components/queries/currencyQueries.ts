@@ -9,6 +9,10 @@ export const fetchConversionRate = async (
   fromCurrency: string,
   toCurrency: string
 ) => {
+  if (fromCurrency === toCurrency) {
+    throw new Error("Please do not select same currency");
+  }
+
   const result = await fetch(
     `https://api.frankfurter.dev/v1/latest?base=${fromCurrency}&symbols=${toCurrency}`
   );

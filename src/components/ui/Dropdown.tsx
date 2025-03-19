@@ -28,10 +28,6 @@ const Dropdown: React.FC<DropdownInterface> = (props) => {
     });
 
     setFormattedCurrencies(d);
-
-    fetch("https://flagcdn.com/w320/{PHP}.png")
-      .then((result) => result.json())
-      .then((data) => console.log(data));
   }, [props.currencies]);
 
   return (
