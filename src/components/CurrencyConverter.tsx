@@ -47,8 +47,8 @@ const CurrencyConverter = () => {
   }, [currencyQuery.data]);
 
   return (
-    <div className="max-w-[60%] mx-auto my-10 p-5 bg-white rounded-lg shadow-md">
-      <h2 className="mb-5 text-2xl font-semibold text-gray-700">
+    <div className="max-w-full mx-10 my-10 p-5 bg-white rounded-lg shadow-md">
+      <h2 className="mb-9 text-2xl text-center font-semibold text-gray-700">
         Currency Converter
       </h2>
 
@@ -63,7 +63,7 @@ const CurrencyConverter = () => {
           <div className="flex justify-center sm:mb-2 col-span-1 ">
             <button
               onClick={() => dispatch(swapCurrencies())}
-              className="p-2 rounded-full cursor-pointer hover:bg-gray-300 bg-gray-200"
+              className="p-2 rounded-md cursor-pointer hover:bg-gray-300 bg-gray-200"
             >
               <HiArrowsRightLeft className="text-xl text-gray-700" />
             </button>
