@@ -105,6 +105,7 @@ const CurrencyConverter = () => {
 
       <div className="mt-4 text-lg font-medium text-center text-red-600 bg-red-500/20 rounded-md">
         {conversionQuery.error?.message && conversionQuery.error.message}
+        {currencyQuery.error?.message && currencyQuery.error.message}
       </div>
 
       <div className="mt-4 text-lg font-medium text-center text-green-900 bg-green-500/20 rounded-md">
