@@ -84,7 +84,7 @@ const CurrencyConverter = () => {
         </label>
         <input
           value={amount}
-          onChange={(e) => dispatch(setAmount(parseInt(e.target.value)))}
+          onChange={(e) => dispatch(setAmount(parseFloat(e.target.value)))}
           type="number"
           className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 mt-1"
         />
